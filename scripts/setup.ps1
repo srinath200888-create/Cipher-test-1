@@ -12,7 +12,7 @@ Write-Host ""
 # Check if cipher-knowledge exists
 if (-not (Test-Path $CipherDir)) {
     Write-Host "ERROR: cipher-knowledge directory not found!" -ForegroundColor Red
-    Write-Host "Make sure you cloned it: git clone https://github.com/srinath200888/cipher-knowledge" -ForegroundColor Yellow
+    Write-Host "Make sure you cloned it: git clone https://github.com/srinath200888-create/cipher-knowledge" -ForegroundColor Yellow
     exit 1
 }
 

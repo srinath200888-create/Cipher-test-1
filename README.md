@@ -17,7 +17,7 @@ The ultimate OpenCode power-up pack. Drop this into any project and instantly su
 ```powershell
 # Clone into your project
 cd your-project
-git clone https://github.com/srinath200888/cipher-knowledge
+git clone https://github.com/srinath200888-create/cipher-knowledge
 
 # Run setup (creates symlinks and copies config)
 .\cipher-knowledge\scripts\setup.ps1

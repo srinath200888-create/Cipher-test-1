@@ -13,7 +13,7 @@ echo ""
 # Check if cipher-knowledge exists
 if [ ! -d "$CIPHER_DIR" ]; then
     echo "ERROR: cipher-knowledge directory not found!"
-    echo "Make sure you cloned it: git clone https://github.com/srinath200888/cipher-knowledge"
+    echo "Make sure you cloned it: git clone https://github.com/srinath200888-create/cipher-knowledge"
     exit 1
 fi
 
