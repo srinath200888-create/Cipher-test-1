@@ -1,0 +1,96 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "srinath200888",
+  "default_agent": "builder",
+  "model": "anthropic/claude-sonnet-4-6",
+  "small_model": "anthropic/claude-haiku-3-5",
+  "references": {
+    "repos": {
+      "path": "cipher-knowledge/repositories",
+      "description": "Index of golden GitHub repos organized by category. Use for tech stack recommendations, tool suggestions, and finding the best libraries."
+    },
+    "docs": {
+      "path": "cipher-knowledge/docs",
+      "description": "Architecture guides, best practices, stack decision guide, and agent reference. Use when planning architecture or choosing patterns."
+    },
+    "concepts": {
+      "path": "cipher-knowledge/concepts",
+      "description": "Software design patterns, SOLID principles, clean architecture, API design, and security patterns. Use when designing systems or reviewing architecture."
+    },
+    "prompts": {
+      "path": "cipher-knowledge/prompts",
+      "description": "Power prompts for building desktop apps, web apps, mobile apps, CLI tools, adding auth, databases, and more."
+    }
+  },
+  "skills": {
+    "paths": ["cipher-knowledge/.opencode/skills"]
+  },
+  "agent": {
+    "architect": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "deny", "bash": "ask" }, "description": "System architect that plans software architecture, creates C4 models, selects tech stacks, designs data models, and breaks down implementation tasks. Use when starting a new project or planning a major feature. Trigger words: architecture, design, plan, tech stack, system design, C4" },
+    "builder": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Main workhorse agent that writes production-ready code across any stack. Handles implementation, testing, and debugging during active development. Trigger words: implement, build, write code, develop, create" },
+    "debugger": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Systematic debugger that finds root causes, analyzes stack traces, bisects commits, and fixes bugs. Use when encountering errors, crashes, or unexpected behavior. Trigger words: bug, crash, error, debug, fix, broken, issue" },
+    "ui-designer": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "UI/UX specialist focused on beautiful, accessible interfaces using shadcn/ui, Tailwind CSS, and Radix primitives. Handles styling, theming, responsive design, and animations. Trigger words: UI, design, style, beautiful, accessible, theme, layout, component" },
+    "reviewer": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "deny" }, "description": "Code reviewer that analyzes code for security vulnerabilities, performance issues, bugs, SOLID violations, and style problems. Provides actionable feedback without making changes. Trigger words: review, audit, inspect, analyze code, quality check" },
+    "product-manager": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "deny" }, "description": "Product manager that writes PRDs, user stories, acceptance criteria, and feature specs. Use when defining requirements or planning features. Trigger words: PRD, requirements, user story, spec, feature plan, scope" },
+    "devops": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "DevOps engineer that handles Docker, CI/CD pipelines, cloud deployment, monitoring, and infrastructure as code. Trigger words: deploy, docker, CI/CD, pipeline, infrastructure, kubernetes, terraform" },
+    "security": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "ask", "bash": "ask" }, "description": "Security engineer that performs threat modeling, OWASP scanning, secrets detection, and penetration testing. Use for security audits and vulnerability assessment. Trigger words: security, OWASP, vulnerability, threat, CVE, audit, penetration test" },
+    "database-architect": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "deny", "bash": "ask" }, "description": "Database architect that designs schemas, plans migrations, optimizes queries, and recommends index strategies. Use for database design and performance tuning. Trigger words: database, schema, SQL, migration, query, index, data model" },
+    "test-engineer": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Test engineer that writes unit, integration, and e2e tests following TDD practices. Handles mocking, coverage reporting, and test infrastructure. Trigger words: test, TDD, coverage, unit test, integration test, e2e, vitest, pytest" },
+    "docs-writer": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "ask", "bash": "ask" }, "description": "Documentation writer that creates READMEs, API references, changelogs, architecture docs, and user guides. Use for documentation generation. Trigger words: docs, documentation, README, API docs, guide, changelog" },
+    "performance": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Performance engineer that profiles code, analyzes bundles, optimizes build size, and improves runtime efficiency. Trigger words: performance, slow, optimize, profile, bundle size, lazy load, cache" },
+    "data-scientist": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "AI/ML engineer that builds RAG pipelines, integrates LLMs, works with embeddings, vector databases, and analytics. Trigger words: AI, ML, RAG, LLM, embedding, vector, model, train, inference" },
+    "research": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "permission": { "edit": "deny", "bash": "ask" }, "description": "Web research agent that searches documentation, finds solutions, gathers context, and summarizes findings. Use when you need to learn something or find information. Trigger words: research, search, find, learn, what is, how does, documentation" },
+    "mobile-dev": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Mobile developer that builds apps with React Native, Expo, and Flutter. Handles navigation, state management, native APIs, and app store deployment. Trigger words: mobile, iOS, Android, React Native, Expo, Flutter" },
+    "desktop-builder": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Desktop application specialist focused on Tauri v2 + React. Expert in IPC, Rust backend, native plugins, window management, system tray, and auto-updates. Trigger words: desktop app, Tauri, native, system tray, window" },
+    "web-builder": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "Web application specialist focused on FastAPI + Next.js full-stack development. Expert in WebSocket streaming, auth, REST APIs, SSR, and type sharing. Trigger words: web app, full-stack, FastAPI, Next.js, API, REST" },
+    "vibe-coder": { "mode": "subagent", "model": "anthropic/claude-sonnet-4-6", "description": "End-to-end app builder that takes natural language descriptions and builds complete working software. Internally coordinates architect, builder, UI designer, and test engineer. Use for rapid prototyping and building full apps from one conversation. Trigger words: build an app, make me, create a full app, whole project, from scratch, vibe" }
+  },
+  "mcp": {
+    "github": { "type": "remote", "url": "https://api.github.com/mcp", "headers": {}, "enabled": false },
+    "playwright": { "type": "local", "command": ["npx", "-y", "@playwright/mcp"], "enabled": false },
+    "filesystem": { "type": "local", "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "."], "enabled": false },
+    "postgres": { "type": "local", "command": ["npx", "-y", "@modelcontextprotocol/server-postgres"], "env": { "PG_URI": "{env:PG_URI}" }, "enabled": false },
+    "sentry": { "type": "remote", "url": "https://mcp.sentry.dev/sse", "headers": { "Authorization": "Bearer {env:SENTRY_TOKEN}" }, "enabled": false },
+    "figma": { "type": "remote", "url": "https://mcp.figma.com/sse", "headers": { "Authorization": "Bearer {env:FIGMA_TOKEN}" }, "enabled": false }
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": { "git *": "allow", "npm *": "ask", "cargo *": "ask", "*": "ask" },
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "question": "allow",
+    "webfetch": "allow",
+    "websearch": "ask"
+  },
+  "commands": {
+    "new-desktop-app": { "description": "Scaffold a complete Tauri v2 + React 19 + shadcn/ui desktop app with SQLite, Zustand, and testing" },
+    "new-web-app": { "description": "Scaffold a FastAPI + Next.js full-stack web app with auth, WebSocket, and Docker" },
+    "new-mobile-app": { "description": "Scaffold an Expo/React Native or Flutter mobile app with navigation and state management" },
+    "new-cli-tool": { "description": "Scaffold a Rust (clap) or Python (click/typer) CLI tool" },
+    "new-mcp-server": { "description": "Scaffold an MCP server in Python or TypeScript" },
+    "ship": { "description": "Build production binary, run tests, optimize bundle, create release artifacts" },
+    "add-feature": { "description": "Plan and implement a new feature end-to-end with tests" },
+    "review": { "description": "Deep code review of recent changes for bugs, security, and quality" },
+    "deploy": { "description": "Deploy to production via Docker, Railway, Fly.io, or Vercel" },
+    "smell": { "description": "Detect code smells and anti-patterns across the codebase" },
+    "upgrade": { "description": "Suggest library and framework upgrades with migration steps" },
+    "init": { "description": "Run full cipher-knowledge setup and health check" },
+    "learn": { "description": "Add a new repository to the golden index" },
+    "suggest-stack": { "description": "Recommend the optimal tech stack for a given project idea" },
+    "health": { "description": "Check that cipher-knowledge, agents, skills, and MCP are loaded correctly" },
+    "research": { "description": "Research a topic and summarize findings from the web" }
+  },
+  "experimental": {
+    "mcp_timeout": 30000
+  },
+  "tool_output": {
+    "max_lines": 500,
+    "max_bytes": 16384
+  },
+  "compaction": {
+    "auto": true,
+    "tail_turns": 20
+  }
+}

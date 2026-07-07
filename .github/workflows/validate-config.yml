@@ -1,0 +1,49 @@
+name: Validate Config
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate opencode.json structure
+        run: |
+          if ! jq . opencode.json > /dev/null 2>&1; then
+            echo "opencode.json is not valid JSON"
+            exit 1
+          fi
+          echo "opencode.json is valid JSON"
+
+      - name: Check agent files have frontmatter
+        run: |
+          for f in .opencode/agent/*.md; do
+            if [ -f "$f" ]; then
+              head -1 "$f" | grep -q "^---" || { echo "Missing frontmatter in $f"; exit 1; }
+              echo "[OK] $f"
+            fi
+          done
+
+      - name: Check skill files exist
+        run: |
+          for d in .opencode/skills/*/; do
+            if [ -d "$d" ] && [ ! -f "$d/SKILL.md" ]; then
+              echo "Missing SKILL.md in $d"
+              exit 1
+            fi
+            echo "[OK] $d"
+          done
+
+      - name: Check command files have frontmatter
+        run: |
+          for f in .opencode/command/*.md; do
+            if [ -f "$f" ]; then
+              head -1 "$f" | grep -q "^---" || { echo "Missing frontmatter in $f"; exit 1; }
+              echo "[OK] $f"
+            fi
+          done
